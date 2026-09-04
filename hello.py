@@ -19,3 +19,4 @@ print("Day 2:", followers)
 
 followers -= 10
 print("Day 3:", followers)
+
