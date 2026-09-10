@@ -24,4 +24,9 @@ while True:
         continue
 
     total_inventory += quantity
-    print(f"Accepted {quantity} units. Current total: {total_inventory}")
+
+    if total_inventory > 500:
+        print(f"ALERT: Overstock detected! Total inventory is {total_inventory}, which exceeds the 500 unit limit.")
+        break
+    else:
+        print(f"Accepted {quantity} units. Current total: {total_inventory}")
