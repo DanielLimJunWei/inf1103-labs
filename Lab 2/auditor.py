@@ -30,3 +30,7 @@ while True:
         break
     else:
         print(f"Accepted {quantity} units. Current total: {total_inventory}")
+
+print("\n--- Audit Report ---")
+print(f"Total Units Processed: {total_inventory}")
+print(f"Number of Failed/Rejected Entries: {failed_entries}")
