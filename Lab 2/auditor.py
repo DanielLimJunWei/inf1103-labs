@@ -5,3 +5,5 @@ while True:
 
     if entry.lower() == "quit":
         break
+
+    quantity = int(entry)
