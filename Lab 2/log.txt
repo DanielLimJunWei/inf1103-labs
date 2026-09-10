@@ -1,0 +1,47 @@
+commit de61f2ef3ffc4bd1a7175510b7f7133672f7127a
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:34:00 2026 -0800
+
+    Req 8: Report total units processed and failed entries on quit
+
+commit e532f2cfef2f2d80c3013699273cca1e09f29183
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:51 2026 -0800
+
+    Req 7: Trigger overstock alert and break loop when total exceeds 500
+
+commit b914ef922b827668350a131a68ed3e23d98fcc98
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:43 2026 -0800
+
+    Req 6: Keep a running total of accepted inventory
+
+commit 1d90b0d1921b446a4d2ef85e7545851aba3018e7
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:33 2026 -0800
+
+    Req 5: Enforce business rule rejecting negative numbers
+
+commit b440708b941f4897119f97fae804482c25ab77d0
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:24 2026 -0800
+
+    Req 4: Reject non-numeric input using isdigit() and track failed entries
+
+commit b64cb4a1040b4667383cdfd17cb1841291ef8d7c
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:18 2026 -0800
+
+    Req 3: Accept stock values as integers
+
+commit 07cb231d7db15f9c2bcc61a89f8d3bdb8f933cf2
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:12 2026 -0800
+
+    Req 2: Run continuous while loop until user types quit
+
+commit 46d3c62efa0cfdedbd3cdd26101b8f26593467e2
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 10 02:33:05 2026 -0800
+
+    Req 1: Initialize inventory total to zero
