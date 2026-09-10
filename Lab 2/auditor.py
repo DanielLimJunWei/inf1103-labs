@@ -22,3 +22,6 @@ while True:
         print(f"Error: Negative values are not allowed ({quantity}).")
         failed_entries += 1
         continue
+
+    total_inventory += quantity
+    print(f"Accepted {quantity} units. Current total: {total_inventory}")
