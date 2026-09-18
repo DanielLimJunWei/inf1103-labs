@@ -29,6 +29,12 @@ def calculate_tax(amount):
     return amount * 0.10
 
 
+def generate_report(total_units, failed_attempts):
+    print("\n--- Audit Report ---")
+    print(f"Total Units Processed: {total_units}")
+    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+
+
 total_inventory = 0
 failed_entries = 0
 
@@ -52,6 +58,4 @@ while True:
     else:
         print(f"Accepted {quantity} units (tax: {tax:.2f}). Current total: {total_inventory}")
 
-print("\n--- Audit Report ---")
-print(f"Total Units Processed: {total_inventory}")
-print(f"Number of Failed/Rejected Entries: {failed_entries}")
+generate_report(total_inventory, failed_entries)
