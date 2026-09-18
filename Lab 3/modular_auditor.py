@@ -1,11 +1,8 @@
-total_inventory = 0
-failed_entries = 0
-
-while True:
+def get_valid_input():
     entry = input("Enter stock quantity (or 'quit' to finish): ").strip()
 
     if entry.lower() == "quit":
-        break
+        return "quit"
 
     # A leading "-" isn't a digit, so isdigit() alone can't tell a negative
     # number apart from plain garbage text -- check for it separately.
@@ -13,16 +10,31 @@ while True:
 
     if not entry.isdigit() and not is_negative_number:
         print(f"Error: '{entry}' is not a valid number. Please try again.")
-        failed_entries += 1
-        continue
+        return None
 
     quantity = int(entry)
 
     if quantity < 0:
         print(f"Error: Negative values are not allowed ({quantity}).")
+        return None
+
+    return quantity
+
+
+total_inventory = 0
+failed_entries = 0
+
+while True:
+    result = get_valid_input()
+
+    if result == "quit":
+        break
+
+    if result is None:
         failed_entries += 1
         continue
 
+    quantity = result
     total_inventory += quantity
 
     if total_inventory > 500:
