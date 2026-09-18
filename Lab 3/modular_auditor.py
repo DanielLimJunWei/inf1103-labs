@@ -21,6 +21,10 @@ def get_valid_input():
     return quantity
 
 
+def process_delivery(current_total, new_value):
+    return current_total + new_value
+
+
 total_inventory = 0
 failed_entries = 0
 
@@ -35,7 +39,7 @@ while True:
         continue
 
     quantity = result
-    total_inventory += quantity
+    total_inventory = process_delivery(total_inventory, quantity)
 
     if total_inventory > 500:
         print(f"ALERT: Overstock detected! Total inventory is {total_inventory}, which exceeds the 500 unit limit.")
