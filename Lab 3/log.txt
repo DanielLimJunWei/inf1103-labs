@@ -1,0 +1,35 @@
+commit 7d8c9c0b9db082faa1594b46e85d1f1c58d8bb55
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 17 18:57:03 2026 -0800
+
+    Add Dockerfile for containerized run of modular_auditor.py
+
+commit 90e45866752323bfb86697889529686524e0e57a
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 17 18:56:59 2026 -0800
+
+    Req 4: Extract generate_report() for final summary output
+
+commit b7cc5747d202ef4d841a114847292d7ff6fa5c8d
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 17 18:56:55 2026 -0800
+
+    Req 3: Add calculate_tax() to calculate 10% tax per delivery
+
+commit 872aeb557b8dfdb5463ff459ad9b8b31c1d7cb9e
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 17 18:56:50 2026 -0800
+
+    Req 2: Extract process_delivery() for running total calculation
+
+commit 069e2660d5b1e5cb57876281561d54ed46ab770a
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 17 18:56:33 2026 -0800
+
+    Req 1: Extract get_valid_input() for prompt handling and validation
+
+commit d8a9babb4a80a48ee1b9e94c6dbbf3b57bfdac3a
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Thu Sep 17 18:56:13 2026 -0800
+
+    Copy Week 2 auditor.py as backup before modularizing
