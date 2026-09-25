@@ -5,6 +5,38 @@ import os
 INVENTORY_FILE = os.environ.get("INVENTORY_FILE", "inventory.txt")
 
 
+def load_inventory():
+    # File format: line 1 is the running total, line 2 is the
+    # comma-separated transaction history.
+    try:
+        with open(INVENTORY_FILE, "r") as file:
+            lines = file.read().splitlines()
+    except FileNotFoundError:
+        print("No saved inventory found. Starting with an empty inventory.")
+        return 0, []
+
+    try:
+        total = int(lines[0]) if lines else 0
+        history = []
+        # "".split(",") gives [''], not [], so skip a blank history line.
+        if len(lines) > 1 and lines[1].strip():
+            history = [int(value) for value in lines[1].split(",")]
+    except ValueError:
+        print(f"Warning: {INVENTORY_FILE} is corrupted. Starting with an empty inventory.")
+        return 0, []
+
+    print(f"Loaded saved inventory: total {total}, {len(history)} past transactions.")
+    return total, history
+
+
+def save_inventory(total, history):
+    # Same two-line format that load_inventory() reads back.
+    with open(INVENTORY_FILE, "w") as file:
+        file.write(f"{total}\n")
+        file.write(",".join(str(amount) for amount in history) + "\n")
+    print(f"Inventory successfully saved to {INVENTORY_FILE}")
+
+
 def get_valid_input():
     entry = input("Enter stock quantity (or 'quit' to finish): ").strip()
 
@@ -44,24 +76,7 @@ def generate_report(total_units, failed_attempts, deliveries_processed, history)
     print(f"Transaction History: {history}")
 
 
-# Read the previously saved inventory. Line 1 is the running total,
-# line 2 is the comma-separated transaction history.
-total_inventory = 0
-transaction_history = []
-try:
-    with open(INVENTORY_FILE, "r") as file:
-        lines = file.read().splitlines()
-    total_inventory = int(lines[0]) if lines else 0
-    # "".split(",") gives [''], not [], so skip a blank history line.
-    if len(lines) > 1 and lines[1].strip():
-        transaction_history = [int(value) for value in lines[1].split(",")]
-    print(f"Loaded saved inventory: total {total_inventory}, {len(transaction_history)} past transactions.")
-except FileNotFoundError:
-    print("No saved inventory found. Starting with an empty inventory.")
-except ValueError:
-    print(f"Warning: {INVENTORY_FILE} is corrupted. Starting with an empty inventory.")
-    total_inventory = 0
-    transaction_history = []
+total_inventory, transaction_history = load_inventory()
 failed_entries = 0
 deliveries_processed = 0
 
@@ -88,9 +103,4 @@ while True:
         print(f"Accepted {quantity} units (tax: {tax:.2f}). Current total: {total_inventory}")
 
 generate_report(total_inventory, failed_entries, deliveries_processed, transaction_history)
-
-# Write the final total and history back in the same two-line format.
-with open(INVENTORY_FILE, "w") as file:
-    file.write(f"{total_inventory}\n")
-    file.write(",".join(str(amount) for amount in transaction_history) + "\n")
-print(f"Inventory successfully saved to {INVENTORY_FILE}")
+save_inventory(total_inventory, transaction_history)
