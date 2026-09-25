@@ -36,25 +36,32 @@ def calculate_tax(amount):
     return amount * 0.10
 
 
-def generate_report(total_units, failed_attempts, deliveries_processed):
+def generate_report(total_units, failed_attempts, deliveries_processed, history):
     print("\n--- Audit Report ---")
     print(f"Total Deliveries Processed: {deliveries_processed}")
     print(f"Total Units Processed: {total_units}")
     print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+    print(f"Transaction History: {history}")
 
 
-# Read the previously saved inventory (line 1 is the running total).
+# Read the previously saved inventory. Line 1 is the running total,
+# line 2 is the comma-separated transaction history.
 total_inventory = 0
+transaction_history = []
 try:
     with open(INVENTORY_FILE, "r") as file:
         lines = file.read().splitlines()
     total_inventory = int(lines[0]) if lines else 0
-    print(f"Loaded saved inventory: total {total_inventory}.")
+    # "".split(",") gives [''], not [], so skip a blank history line.
+    if len(lines) > 1 and lines[1].strip():
+        transaction_history = [int(value) for value in lines[1].split(",")]
+    print(f"Loaded saved inventory: total {total_inventory}, {len(transaction_history)} past transactions.")
 except FileNotFoundError:
     print("No saved inventory found. Starting with an empty inventory.")
 except ValueError:
     print(f"Warning: {INVENTORY_FILE} is corrupted. Starting with an empty inventory.")
     total_inventory = 0
+    transaction_history = []
 failed_entries = 0
 deliveries_processed = 0
 
@@ -71,6 +78,7 @@ while True:
     quantity = result
     tax = calculate_tax(quantity)
     total_inventory = process_delivery(total_inventory, quantity)
+    transaction_history.append(quantity)
     deliveries_processed += 1
 
     if total_inventory > 500:
@@ -79,4 +87,4 @@ while True:
     else:
         print(f"Accepted {quantity} units (tax: {tax:.2f}). Current total: {total_inventory}")
 
-generate_report(total_inventory, failed_entries, deliveries_processed)
+generate_report(total_inventory, failed_entries, deliveries_processed, transaction_history)
