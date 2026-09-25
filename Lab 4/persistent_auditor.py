@@ -88,3 +88,9 @@ while True:
         print(f"Accepted {quantity} units (tax: {tax:.2f}). Current total: {total_inventory}")
 
 generate_report(total_inventory, failed_entries, deliveries_processed, transaction_history)
+
+# Write the final total and history back in the same two-line format.
+with open(INVENTORY_FILE, "w") as file:
+    file.write(f"{total_inventory}\n")
+    file.write(",".join(str(amount) for amount in transaction_history) + "\n")
+print(f"Inventory successfully saved to {INVENTORY_FILE}")
