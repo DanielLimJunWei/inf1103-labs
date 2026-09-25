@@ -1,0 +1,41 @@
+commit 09a6d0edd0d1cea15f6abe76833373ef7556f4ae
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 11:08:21 2026 +0800
+
+    Add Dockerfile for persistent_auditor.py with volume-backed storage
+    
+    Stores inventory.txt in /app/data so a mounted volume keeps the data
+    after the container is removed.
+
+commit f4521bcd09c269187dde0f50f80be093d1a2d122
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 11:08:20 2026 +0800
+
+    Req 4: Extract load_inventory() and save_inventory() functions
+    
+    Moves the file reading and writing logic into dedicated functions to
+    keep the modular design from Lab 3.
+
+commit 773308a0d074c999d4ee25497c1ef337edd9fcdf
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 11:08:20 2026 +0800
+
+    Req 3: Save final total and transaction history to inventory.txt on quit
+
+commit a0a38193bd4256ee3e76aeb79e733b94a59b9059
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 11:08:19 2026 +0800
+
+    Req 2: Track every valid transaction amount in a history list
+    
+    Stores each accepted quantity in transaction_history, restores saved
+    history at startup, and shows it in the audit report.
+
+commit 0fdfeed31add5f5b85cda9f2b4b38166a3c0e08c
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Sep 25 11:08:19 2026 +0800
+
+    Req 1: Load saved inventory at startup, starting empty if file is missing
+    
+    Copies modular_auditor.py to persistent_auditor.py and reads the running
+    total from inventory.txt.
