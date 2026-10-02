@@ -1,0 +1,29 @@
+commit a79a57a2ba315c3355ef914b612fcedb2e0a6c12
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:27:03 2026 +0800
+
+    Add Dockerfile for inventory_manager.py with volume-backed storage
+
+commit e0193b10f626bac237856cf1e5ed81b32fdc2378
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:27:03 2026 +0800
+
+    Req 4: Add menu with Display, Add, Update, Search, Save and Exit options
+
+commit 547c58f7987ad2652c85cbd9ca12cf101122de79
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:26:18 2026 +0800
+
+    Req 3: Add load_inventory() and save_inventory() using inventory.json
+
+commit 78101af049560c0cccfdea2a04f6d2838937f092
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:25:56 2026 +0800
+
+    Req 2: Add add_product(), update_stock(), search_product() and display_all()
+
+commit dfe67be2a7465f29998a6ed05954a2d95393676e
+Author: Daniel Lim <2601894@sit.singaporetech.edu.sg>
+Date:   Fri Oct 2 10:25:41 2026 +0800
+
+    Req 1: Represent products as dictionaries in an inventory list
