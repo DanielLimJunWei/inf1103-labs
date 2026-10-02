@@ -1,3 +1,35 @@
+import json
+import os
+
+# Docker overrides this so the file lands in the mounted volume
+# instead of inside the container, where it would be lost on exit.
+INVENTORY_FILE = os.environ.get("INVENTORY_FILE", "inventory.json")
+
+
+def load_inventory():
+    if not os.path.exists(INVENTORY_FILE):
+        print(f"{INVENTORY_FILE} not found. Starting with an empty inventory.")
+        return []
+
+    try:
+        with open(INVENTORY_FILE, "r") as file:
+            inventory = json.load(file)
+    except json.JSONDecodeError:
+        print(f"Warning: {INVENTORY_FILE} is corrupted. Starting with an empty inventory.")
+        return []
+
+    print(f"{INVENTORY_FILE} found.")
+    print("Inventory loaded successfully.")
+    return inventory
+
+
+def save_inventory(inventory):
+    # indent=4 keeps the file readable if it is opened by hand.
+    with open(INVENTORY_FILE, "w") as file:
+        json.dump(inventory, file, indent=4)
+    print(f"Inventory saved successfully to {INVENTORY_FILE}.")
+
+
 def format_product(product):
     return (f"ID: {product['id']} | Name: {product['name']} | "
             f"Price: ${product['price']:.2f} | Stock: {product['stock']}")
@@ -94,10 +126,7 @@ def search_product(inventory):
 
 
 # Each product is a dictionary, and the inventory is a list of them.
-inventory = [
-    {"id": "P001", "name": "Laptop", "price": 1200.00, "stock": 15},
-    {"id": "P002", "name": "Mouse", "price": 25.50, "stock": 40},
-    {"id": "P003", "name": "Keyboard", "price": 45.00, "stock": 25},
-]
-
+# The products now come from inventory.json instead of being hard-coded.
+inventory = load_inventory()
 display_all(inventory)
+save_inventory(inventory)
