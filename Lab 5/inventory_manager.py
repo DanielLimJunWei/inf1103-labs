@@ -125,8 +125,50 @@ def search_product(inventory):
     print("-" * 48)
 
 
-# Each product is a dictionary, and the inventory is a list of them.
-# The products now come from inventory.json instead of being hard-coded.
-inventory = load_inventory()
-display_all(inventory)
-save_inventory(inventory)
+def show_menu():
+    print("\n----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+
+
+def main():
+    print("=" * 40)
+    print("INVENTORY MANAGEMENT SYSTEM")
+    print("=" * 40)
+    print()
+
+    # Each product is a dictionary, and the inventory is a list of them.
+    inventory = load_inventory()
+
+    while True:
+        show_menu()
+        option = input("\nEnter option: ").strip()
+
+        if option == "1":
+            display_all(inventory)
+        elif option == "2":
+            add_product(inventory)
+        elif option == "3":
+            update_stock(inventory)
+        elif option == "4":
+            search_product(inventory)
+        elif option == "5":
+            print("\nSaving inventory...")
+            save_inventory(inventory)
+        elif option == "6":
+            # Save on exit too, so changes aren't lost if option 5 was skipped.
+            print("\nSaving inventory before exit...")
+            save_inventory(inventory)
+            print("\nThank you for using Inventory Management System.")
+            print("Program terminated.")
+            break
+        else:
+            print(f"Error: '{option}' is not a valid option. Please enter 1-6.")
+
+
+main()
